@@ -23,7 +23,9 @@ class _CurrentLocationState extends State<CurrentLocation> {
           }
           if (snapshot.hasError) {
             return const Text(
-                'Error while retrieving location info. Please allow the permission');
+              'Error while retrieving location info. Please allow the permission',
+              style: TextStyle(color: Colors.redAccent),
+            );
           }
           if (snapshot.hasData) {
             Position? position = snapshot.data;
