@@ -1,16 +1,19 @@
-# sky_watch
+# SkyWatch: Weather Information at Hands
 
 A Flutter-based app that provides weather information for multiple locations and offers recommendations based on the current weather.
 
-## Getting Started
+## Requirements
 
-This project is a starting point for a Flutter application.
+- [ ] Implement at least a `StatelessWidget` such as `Row` or `Column`.
+- [ ] Implement at least a `StatefulWidget` to display app status or takes input from user.
+- [ ] Contains at least **two** pages and implement `Navigation`.
+- [ ] No UI overflow. In addition, responsive in both mobile and web is a **plus**.
 
-A few resources to get you started if this is your first Flutter project:
+## About
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Design inspired by [Daria Kravets for Purrweb UI/UX Agency - Dribble](https://dribbble.com/shots/18483618-Weather-App?utm_source=Clipboard_Shot&utm_campaign=dariapurrweb&utm_content=Weather%20App&utm_medium=Social_Share&utm_source=Clipboard_Shot&utm_campaign=dariapurrweb&utm_content=Weather%20App&utm_medium=Social_Share) - _Thank you so much!_
+- Third party packages used in this app:
+    - [dio v5.7.0](https://pub.dev/packages/dio)
+    - [geolocator v13.0.1](https://pub.dev/packages/geolocator)
+    - [intl v.0.19.0](https://pub.dev/packages/intl)
+    - [flutter_dotenv v5.1.0](https://pub.dev/packages/flutter_dotenv)
