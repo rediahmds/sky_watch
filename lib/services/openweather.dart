@@ -4,17 +4,20 @@ import 'package:sky_watch/models/openweather.dart';
 
 class SkyWatchWeather {
   final String apiKey;
-  SkyWatchWeather({required this.apiKey});
+  final double latitude;
+  final double longitude;
+  SkyWatchWeather(
+      {required this.latitude, required this.longitude, required this.apiKey});
 
   final Dio _dio = Dio();
   String baseUrl = 'https://api.openweathermap.org';
 
-  Future<String> reverseGeocoding(double lat, double lon) async {
+  Future<String> reverseGeocoding() async {
     try {
       final response = await _dio.get('$baseUrl/geo/1.0/reverse?',
           queryParameters: {
-            'lat': lat,
-            'lon': lon,
+            'lat': latitude,
+            'lon': longitude,
             'limit': 2,
             'appid': apiKey
           });

@@ -34,8 +34,6 @@ class _CurrentLocationState extends State<CurrentLocation> {
             final openWeatherApiKey = dotenv.env['OPENWEATHER_API_KEY'];
 
             return FutureBuilder(
-              future: SkyWatchWeather(apiKey: openWeatherApiKey!)
-                  .reverseGeocoding(latitude!, longitude!),
               builder: (BuildContext context,
                   AsyncSnapshot<dynamic> weatherSnapshot) {
                 if (weatherSnapshot.connectionState ==
@@ -52,6 +50,11 @@ class _CurrentLocationState extends State<CurrentLocation> {
                 }
                 return const Text('Failed to retrieve weather data');
               },
+              future: SkyWatchWeather(
+                      apiKey: openWeatherApiKey!,
+                      latitude: latitude!,
+                      longitude: longitude!)
+                  .reverseGeocoding(),
             );
           }
 
