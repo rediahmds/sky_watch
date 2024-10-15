@@ -12,7 +12,7 @@ class SkyWatchWeather {
   final Dio _dio = Dio();
   final String baseUrl = 'https://api.openweathermap.org';
 
-  Future<String> reverseGeocoding() async {
+  Future<String> fetchCityNameByCoordinate() async {
     try {
       final response = await _dio.get('$baseUrl/geo/1.0/reverse?',
           queryParameters: {
