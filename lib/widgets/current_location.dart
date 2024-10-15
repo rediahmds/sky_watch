@@ -54,7 +54,7 @@ class _CurrentLocationState extends State<CurrentLocation> {
                       apiKey: openWeatherApiKey!,
                       latitude: latitude!,
                       longitude: longitude!)
-                  .reverseGeocoding(),
+                  .fetchCityNameByCoordinate(),
             );
           }
 
