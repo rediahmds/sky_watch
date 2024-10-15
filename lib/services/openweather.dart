@@ -10,7 +10,7 @@ class SkyWatchWeather {
       {required this.latitude, required this.longitude, required this.apiKey});
 
   final Dio _dio = Dio();
-  String baseUrl = 'https://api.openweathermap.org';
+  final String baseUrl = 'https://api.openweathermap.org';
 
   Future<String> reverseGeocoding() async {
     try {
