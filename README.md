@@ -17,3 +17,8 @@ A Flutter-based app that provides weather information for multiple locations and
     - [geolocator v13.0.1](https://pub.dev/packages/geolocator)
     - [intl v.0.19.0](https://pub.dev/packages/intl)
     - [flutter_dotenv v5.1.0](https://pub.dev/packages/flutter_dotenv)
+
+## Todo
+
+- [ ] Fetch current weather info and icon
+- Settings page include custom user api key and current location
