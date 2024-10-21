@@ -21,7 +21,9 @@ class App extends StatelessWidget {
         useMaterial3: true,
         textTheme: GoogleFonts.outfitTextTheme(Theme.of(context)
             .textTheme
-            .copyWith(bodyMedium: const TextStyle(fontSize: 18.0))),
+            .copyWith(
+                bodyMedium: const TextStyle(
+                    fontSize: 20.0, fontWeight: FontWeight.w500))),
       ),
       home: const Home(),
     );
