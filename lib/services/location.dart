@@ -1,7 +1,7 @@
 import 'package:geolocator/geolocator.dart';
 
 class SkyWatchGeolocator {
-  Future<Position?> getCurrentCityLocation() async {
+  Future<Position> getCurrentCoord() async {
     // check location service
     bool isLocationServiceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!isLocationServiceEnabled) {
@@ -24,12 +24,12 @@ class SkyWatchGeolocator {
       }
     }
 
-    // Position? position = await Geolocator.getCurrentPosition(
-    //     locationSettings:
-    //         const LocationSettings(accuracy: LocationAccuracy.high));
-
-    // TODO: Consider using lastknowLocation
     Position? position = await Geolocator.getLastKnownPosition();
+
+    // if lastknownposition returns null, retrieve current
+    position ??= await Geolocator.getCurrentPosition(
+        locationSettings:
+            const LocationSettings(accuracy: LocationAccuracy.high));
 
     return position;
   }

@@ -19,9 +19,11 @@ class App extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
-        textTheme: GoogleFonts.outfitTextTheme(Theme.of(context)
+        textTheme: GoogleFonts.interTextTheme(Theme.of(context)
             .textTheme
-            .copyWith(bodyMedium: const TextStyle(fontSize: 18.0))),
+            .copyWith(
+                bodyMedium: const TextStyle(
+                    fontSize: 20.0, fontWeight: FontWeight.w500))),
       ),
       home: const Home(),
     );
