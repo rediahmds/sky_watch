@@ -31,7 +31,11 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: const Text('APP BAR'),
+          title: const Text(
+            'SkyWatch',
+            style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.w800),
+          ),
+          centerTitle: true,
           backgroundColor: _backgroundColor,
           leading: IconButton(
               onPressed: () {
