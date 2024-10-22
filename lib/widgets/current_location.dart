@@ -10,7 +10,7 @@ class CurrentLocation extends StatelessWidget {
       {super.key,
       required this.latitude,
       required this.longitude,
-      this.style = const TextStyle(fontSize: 30.0)});
+      this.style = const TextStyle(fontSize: 28.0)});
 
   @override
   Widget build(BuildContext context) {
