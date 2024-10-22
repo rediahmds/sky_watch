@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:hugeicons/hugeicons.dart';
 import 'package:sky_watch/services/instances.dart';
 import 'package:sky_watch/widgets/current_date_day.dart';
 import 'package:sky_watch/widgets/current_location.dart';
@@ -23,10 +25,25 @@ class _HomeState extends State<Home> {
         .getCurrentCoord(); // Fetch location when widget initializes
   }
 
+  static const _colorCode = 0xffffe142;
+  static const _backgroundColor = Color(_colorCode);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xffffe142),
+      appBar: AppBar(
+          title: const Text('APP BAR'),
+          backgroundColor: _backgroundColor,
+          leading: IconButton(
+              onPressed: () {
+                print('Bars pressed');
+              },
+              icon: const HugeIcon(
+                icon: HugeIcons.strokeRoundedMenu01,
+                color: Colors.black87,
+                size: 28.0,
+              ))),
+      backgroundColor: _backgroundColor,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
