@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hugeicons/hugeicons.dart';
+import 'package:intl/intl.dart';
 import 'package:sky_watch/services/instances.dart'; // Your weather service
 import 'package:weather/weather.dart';
 
@@ -26,31 +27,133 @@ class CurrentWeatherInfo extends StatelessWidget {
         }
 
         if (snapshot.hasData) {
-          final Weather? weather = snapshot.data;
+          final weather = snapshot.data;
+          final tempFeelsLike =
+              NumberFormat('#').format(weather!.temperature!.celsius);
+          final humidity = NumberFormat('#.#').format(weather.humidity);
+          final windSpeed = weather.windSpeed;
+
+          const valueStyle =
+              TextStyle(color: Color(0xffffe142), fontSize: 24.0);
+          const metricStyle =
+              TextStyle(color: Color(0xffffe142), fontSize: 14.0);
+
           return Column(
             children: <Widget>[
-              Image.network(
-                  swWeather.fetchWeatherIconURL(weather!.weatherIcon!)),
-              Text(weather.weatherDescription ?? 'No description'),
+              Text(_capitalizeFirstLetter(weather.weatherDescription!)),
+              Image.network(swWeather.fetchWeatherIconURL(
+                  weatherIconCode: weather.weatherIcon!)),
               Container(
-                decoration:
-                    BoxDecoration(borderRadius: BorderRadius.circular(10.0)),
-                child: const Column(
-                  children: <Widget>[
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: <Widget>[
-                        Text('Five days forecast'),
-                        HugeIcon(
-                          icon: HugeIcons.strokeRoundedArrowRight02,
-                          color: Colors.black,
-                          size: 28.0,
+                decoration: BoxDecoration(
+                    color: Colors.black87,
+                    borderRadius: BorderRadius.circular(10.0)),
+                padding: const EdgeInsets.symmetric(
+                    vertical: 25.0, horizontal: 20.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Column(
+                      children: [
+                        const Padding(
+                          padding: EdgeInsets.only(top: 2.0, bottom: 2.0),
+                          child: HugeIcon(
+                            icon: HugeIcons.strokeRoundedCelsius,
+                            color: Color(0xffffe142),
+                            size: 40.0,
+                          ),
                         ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 2.0, bottom: 2.0),
+                          child: Text(
+                            tempFeelsLike,
+                            style: valueStyle,
+                          ),
+                        ), // optional: add degree icon °
+                        const Padding(
+                          padding: EdgeInsets.only(top: 2.0, bottom: 2.0),
+                          child: Text(
+                            'Temperature',
+                            style: metricStyle,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        const Padding(
+                          padding: EdgeInsets.only(top: 2.0, bottom: 2.0),
+                          child: HugeIcon(
+                            icon: HugeIcons.strokeRoundedHumidity,
+                            color: Color(0xffffe142),
+                            size: 40.0,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 2.0, bottom: 2.0),
+                          child: Text(
+                            '$humidity%',
+                            style: valueStyle,
+                          ),
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.only(top: 2.0, bottom: 2.0),
+                          child: Text(
+                            'Humidity',
+                            style: metricStyle,
+                          ),
+                        )
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        const Padding(
+                          padding: EdgeInsets.only(top: 2.0, bottom: 2.0),
+                          child: HugeIcon(
+                            icon: HugeIcons.strokeRoundedFastWind,
+                            color: Color(0xffffe142),
+                            size: 40.0,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 2.0, bottom: 2.0),
+                          child: Text(
+                            '${windSpeed.toString()}m/s',
+                            style: valueStyle,
+                          ),
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.only(top: 2.0, bottom: 2.0),
+                          child: Text(
+                            'Wind',
+                            style: metricStyle,
+                          ),
+                        )
                       ],
                     ),
                   ],
                 ),
               ),
+              const SizedBox(
+                height: 25.0,
+              ),
+              Container(
+                decoration:
+                    BoxDecoration(borderRadius: BorderRadius.circular(10.0)),
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: <Widget>[
+                    Text('Weather forecasts'),
+                    HugeIcon(
+                      icon: HugeIcons.strokeRoundedArrowRight02,
+                      color: Colors.black,
+                      size: 28.0,
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 25.0,
+              )
             ],
           );
         }
@@ -58,5 +161,12 @@ class CurrentWeatherInfo extends StatelessWidget {
         return const Text('Failed to retrieve weather information.');
       },
     );
+  }
+
+  String _capitalizeFirstLetter(String input) {
+    return input.split(' ').map((word) {
+      if (word.isEmpty) return word;
+      return word[0].toUpperCase() + word.substring(1).toLowerCase();
+    }).join(' ');
   }
 }
