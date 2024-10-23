@@ -24,8 +24,12 @@ class _HomeState extends State<Home> {
         .getCurrentCoord(); // Fetch location when widget initializes
   }
 
-  static const _colorCode = 0xffffe142;
-  static const _primaryColor = Color(_colorCode);
+  static const _primaryColorCode = 0xffffe142;
+  static const _primaryColor = Color(_primaryColorCode);
+  static const _secondaryColorCode = 0xffffed8f;
+  static const _secondaryColor = Color(_secondaryColorCode);
+
+  static const _appDescription = 'Weather information at your fingertips';
 
   @override
   Widget build(BuildContext context) {
@@ -37,19 +41,67 @@ class _HomeState extends State<Home> {
           ),
           centerTitle: true,
           backgroundColor: _primaryColor,
-          leading: Padding(
-            padding: const EdgeInsets.only(left: 10.0),
-            child: IconButton(
-                onPressed: () {
-                  print('Bars pressed');
-                },
-                icon: const HugeIcon(
-                  icon: HugeIcons.strokeRoundedMenu02,
-                  color: Colors.black87,
-                  size: 35.0,
-                )),
-          )),
+          leading: Builder(builder: (context) {
+            return Padding(
+              padding: const EdgeInsets.only(left: 10.0),
+              child: IconButton(
+                  onPressed: () {
+                    Scaffold.of(context).openDrawer();
+                  },
+                  icon: const HugeIcon(
+                    icon: HugeIcons.strokeRoundedMenu02,
+                    color: Colors.black87,
+                    size: 35.0,
+                  )),
+            );
+          })),
       backgroundColor: _primaryColor,
+      drawer: Drawer(
+        backgroundColor: _secondaryColor,
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            const DrawerHeader(
+              decoration: BoxDecoration(color: _primaryColor),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'SkyWatch',
+                    style:
+                        TextStyle(fontSize: 25.0, fontWeight: FontWeight.w300),
+                  ),
+                  Text(_appDescription),
+                ],
+              ),
+            ),
+            ListTile(
+              leading: const HugeIcon(
+                icon: HugeIcons.strokeRoundedCalendar03,
+                color: Colors.black,
+                size: 24.0,
+              ),
+              title: const Text('Forecasts'),
+              onTap: () {
+                // TODO: Implement
+                print('Forecast in drawer');
+              },
+            ),
+            ListTile(
+              leading: const HugeIcon(
+                icon: HugeIcons.strokeRoundedSettings02,
+                color: Colors.black,
+                size: 24.0,
+              ),
+              title: const Text('Settings'),
+              onTap: () {
+                //   TODO: Implement
+                print('Settings from drawer');
+              },
+            )
+          ],
+        ),
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
