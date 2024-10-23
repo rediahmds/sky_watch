@@ -37,15 +37,18 @@ class _HomeState extends State<Home> {
           ),
           centerTitle: true,
           backgroundColor: _backgroundColor,
-          leading: IconButton(
-              onPressed: () {
-                print('Bars pressed');
-              },
-              icon: const HugeIcon(
-                icon: HugeIcons.strokeRoundedMenu01,
-                color: Colors.black87,
-                size: 28.0,
-              ))),
+          leading: Padding(
+            padding: const EdgeInsets.only(left: 10.0),
+            child: IconButton(
+                onPressed: () {
+                  print('Bars pressed');
+                },
+                icon: const HugeIcon(
+                  icon: HugeIcons.strokeRoundedMenu02,
+                  color: Colors.black87,
+                  size: 35.0,
+                )),
+          )),
       backgroundColor: _backgroundColor,
       body: SafeArea(
         child: SingleChildScrollView(
