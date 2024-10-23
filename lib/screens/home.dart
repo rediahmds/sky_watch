@@ -25,7 +25,7 @@ class _HomeState extends State<Home> {
   }
 
   static const _colorCode = 0xffffe142;
-  static const _backgroundColor = Color(_colorCode);
+  static const _primaryColor = Color(_colorCode);
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,7 @@ class _HomeState extends State<Home> {
             style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.w800),
           ),
           centerTitle: true,
-          backgroundColor: _backgroundColor,
+          backgroundColor: _primaryColor,
           leading: Padding(
             padding: const EdgeInsets.only(left: 10.0),
             child: IconButton(
@@ -49,7 +49,7 @@ class _HomeState extends State<Home> {
                   size: 35.0,
                 )),
           )),
-      backgroundColor: _backgroundColor,
+      backgroundColor: _primaryColor,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
