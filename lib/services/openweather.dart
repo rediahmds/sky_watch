@@ -1,5 +1,6 @@
 import 'instances.dart';
 import 'package:weather/weather.dart';
+import 'package:http/http.dart';
 
 class SkyWatchWeather {
   final String apiKey;
@@ -18,9 +19,12 @@ class SkyWatchWeather {
           await wf.currentWeatherByLocation(latitude, longitude);
 
       return response.areaName;
-    } on OpenWeatherAPIException catch (e) {
-      logger.e(e);
+    } on OpenWeatherAPIException catch (openweatherErr) {
+      logger.e(openweatherErr);
       rethrow;
+    } on ClientException catch (e) {
+      logger.e(e);
+      throw 'Error while retrieving city info. Please restart the app.';
     }
   }
 
@@ -32,6 +36,9 @@ class SkyWatchWeather {
     } on OpenWeatherAPIException catch (e) {
       logger.e(e);
       rethrow;
+    } on ClientException catch (e) {
+      logger.e(e);
+      throw 'Error while requesting weather data. Please close and reopen the app';
     }
   }
 
@@ -70,6 +77,9 @@ class SkyWatchWeather {
     } on OpenWeatherAPIException catch (e) {
       logger.e(e);
       rethrow;
+    } on ClientException catch (e) {
+      logger.e(e);
+      throw 'Error while retrieving weather forecast information.';
     }
   }
 }
