@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:hugeicons/hugeicons.dart';
+import 'package:sky_watch/screens/forecast.dart';
 import 'package:sky_watch/services/instances.dart';
 import 'package:sky_watch/widgets/current_date_day.dart';
 import 'package:sky_watch/widgets/current_location.dart';
@@ -24,9 +25,9 @@ class _HomeState extends State<Home> {
         .getCurrentCoord(); // Fetch location when widget initializes
   }
 
-  static const _primaryColorCode = 0xffffe142;
+  static const _primaryColorCode = 0xffffe142; // Yellow
   static const _primaryColor = Color(_primaryColorCode);
-  static const _secondaryColorCode = 0xffffed8f;
+  static const _secondaryColorCode = 0xffffed8f; // Whitey-yellow
   static const _secondaryColor = Color(_secondaryColorCode);
 
   static const _appDescription = 'Weather information at your fingertips';
@@ -83,8 +84,13 @@ class _HomeState extends State<Home> {
               ),
               title: const Text('Forecasts'),
               onTap: () {
-                // TODO: Implement
-                print('Forecast in drawer');
+                Navigator.pop(context);
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return Forecast(
+                    primaryColor: _primaryColor,
+                    position: _position,
+                  );
+                }));
               },
             ),
             ListTile(

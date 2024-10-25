@@ -24,10 +24,7 @@ class SkyWatchGeolocator {
       }
     }
 
-    Position? position = await Geolocator.getLastKnownPosition();
-
-    // if lastknownposition returns null, retrieve current
-    position ??= await Geolocator.getCurrentPosition(
+    Position position = await Geolocator.getCurrentPosition(
         locationSettings:
             const LocationSettings(accuracy: LocationAccuracy.high));
 

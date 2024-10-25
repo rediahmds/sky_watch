@@ -22,4 +22,5 @@ A Flutter-based app that provides weather information for multiple locations and
 
 - [x] Fetch current weather info and icon
 - [ ] Filter to 5 days in home and show details on next page
+- [ ] Remove cryptic error message in homepage.
 - Settings page include custom user api key and current location
