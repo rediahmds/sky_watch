@@ -24,9 +24,9 @@ class _HomeState extends State<Home> {
         .getCurrentCoord(); // Fetch location when widget initializes
   }
 
-  static const _primaryColorCode = 0xffffe142;
+  static const _primaryColorCode = 0xffffe142; // Yellow
   static const _primaryColor = Color(_primaryColorCode);
-  static const _secondaryColorCode = 0xffffed8f;
+  static const _secondaryColorCode = 0xffffed8f; // Whitey-yellow
   static const _secondaryColor = Color(_secondaryColorCode);
 
   static const _appDescription = 'Weather information at your fingertips';
