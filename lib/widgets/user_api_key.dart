@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sky_watch/services/user_config.dart';
 
 class UserAPIkeyForm extends StatefulWidget {
   const UserAPIkeyForm({super.key});
@@ -9,15 +10,24 @@ class UserAPIkeyForm extends StatefulWidget {
 
 class _UserAPIkeyFormState extends State<UserAPIkeyForm> {
   final _controller = TextEditingController();
-  bool _isTextFieldEnabled = false;
+  late bool _isTextFieldEnabled;
+  late String _userAPIkey;
+
+  @override
+  void initState() {
+    super.initState();
+    _isTextFieldEnabled = UserConfig().isTextFieldEnabled ?? false;
+    _userAPIkey = UserConfig().apiKey ?? '';
+    if (_userAPIkey.isNotEmpty) {
+      _controller.text = _userAPIkey;
+    }
+  }
 
   @override
   void dispose() {
     _controller.dispose();
     super.dispose();
   }
-
-  String? userAPIkey;
 
   @override
   Widget build(BuildContext context) {
@@ -31,11 +41,7 @@ class _UserAPIkeyFormState extends State<UserAPIkeyForm> {
               const Text('Use your own API key'),
               Switch(
                   value: _isTextFieldEnabled,
-                  onChanged: (bool value) {
-                    setState(() {
-                      _isTextFieldEnabled = value;
-                    });
-                  }),
+                  onChanged: _toggleTextFieldEnabled),
             ],
           ),
           TextField(
@@ -46,12 +52,20 @@ class _UserAPIkeyFormState extends State<UserAPIkeyForm> {
                 hintText: 'Enter your OpenWeather Map API key'),
             onSubmitted: (String apiKey) {
               setState(() {
-                userAPIkey = apiKey;
+                _userAPIkey = _controller.text;
+                UserConfig().apiKey = _userAPIkey;
               });
             },
           ),
         ],
       ),
     );
+  }
+
+  void _toggleTextFieldEnabled(bool value) {
+    setState(() {
+      _isTextFieldEnabled = value;
+      UserConfig().isTextFieldEnabled = _isTextFieldEnabled;
+    });
   }
 }
