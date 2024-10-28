@@ -121,7 +121,9 @@ class _HomeState extends State<Home> {
               builder:
                   (BuildContext context, AsyncSnapshot<Position> snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const CircularProgressIndicator(); // Show loading indicator
+                  return const Center(
+                      child:
+                          CircularProgressIndicator()); // Show loading indicator
                 }
 
                 if (snapshot.hasError) {
