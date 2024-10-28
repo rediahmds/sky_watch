@@ -139,17 +139,7 @@ class CurrentWeatherInfo extends StatelessWidget {
               Container(
                 decoration:
                     BoxDecoration(borderRadius: BorderRadius.circular(10.0)),
-                child: const Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: <Widget>[
-                    Text('Weather forecasts'),
-                    HugeIcon(
-                      icon: HugeIcons.strokeRoundedArrowRight02,
-                      color: Colors.black,
-                      size: 28.0,
-                    ),
-                  ],
-                ),
+                child: const Text('5 Days Weather Forecasts'),
               ),
               const SizedBox(
                 height: 25.0,
