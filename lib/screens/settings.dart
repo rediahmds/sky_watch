@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sky_watch/widgets/user_api_key.dart';
+import 'package:sky_watch/widgets/settings_form.dart';
 
 class Settings extends StatelessWidget {
   final Color primaryColor;
@@ -20,11 +20,7 @@ class Settings extends StatelessWidget {
             icon: const Icon(Icons.chevron_left_rounded)),
       ),
       backgroundColor: primaryColor,
-      body: const Column(
-        children: [
-          UserAPIkeyForm(),
-        ],
-      ),
+      body: UserSettingsForm(primaryColor: primaryColor),
     );
   }
 }
