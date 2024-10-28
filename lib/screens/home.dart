@@ -104,7 +104,7 @@ class _HomeState extends State<Home> {
               onTap: () {
                 Navigator.pop(context);
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return Settings(primaryColor: _primaryColor);
+                  return const Settings(primaryColor: _primaryColor);
                 }));
               },
             )
