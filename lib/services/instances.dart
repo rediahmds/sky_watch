@@ -3,8 +3,10 @@ import 'package:logger/logger.dart';
 import 'package:sky_watch/services/date.dart';
 import 'package:sky_watch/services/location.dart';
 import 'package:sky_watch/services/openweather.dart';
+import 'package:sky_watch/services/user_config.dart';
 
-final openWeatherApiKey = dotenv.env['OPENWEATHER_API_KEY'];
+final openWeatherApiKey =
+    UserConfig().apiKey ?? dotenv.env['OPENWEATHER_API_KEY'];
 final logger = Logger(
   printer: PrettyPrinter(),
 );
