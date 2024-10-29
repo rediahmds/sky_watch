@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sky_watch/models/settings_data.dart';
+import 'package:sky_watch/services/instances.dart';
+import 'package:sky_watch/services/openweather.dart';
 import 'package:sky_watch/services/user_config.dart';
 
 class SaveSettings extends StatelessWidget {
@@ -15,6 +17,10 @@ class SaveSettings extends StatelessWidget {
         onPressed: () {
           UserConfig().apiKey = settingsData.userAPIkeyController.text;
           UserConfig().isTextFieldEnabled = settingsData.isUserAPIkeyEnabled;
+
+          openWeatherApiKey = UserConfig().apiKey;
+          swWeather = SkyWatchWeather(apiKey: openWeatherApiKey!);
+          openWeatherApiKeyNotifier.value = openWeatherApiKey;
 
           ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(content: Text('Saved successfully!')));

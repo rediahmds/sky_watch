@@ -3,7 +3,7 @@ import 'package:weather/weather.dart';
 import 'package:http/http.dart';
 
 class SkyWatchWeather {
-  final String apiKey;
+  String apiKey;
 
   SkyWatchWeather({required this.apiKey});
 
