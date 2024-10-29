@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:hugeicons/hugeicons.dart';
 import 'package:sky_watch/screens/forecast.dart';
+import 'package:sky_watch/screens/settings.dart';
 import 'package:sky_watch/services/instances.dart';
 import 'package:sky_watch/widgets/current_date_day.dart';
 import 'package:sky_watch/widgets/current_location.dart';
@@ -101,8 +102,10 @@ class _HomeState extends State<Home> {
               ),
               title: const Text('Settings'),
               onTap: () {
-                //   TODO: Implement
-                print('Settings from drawer');
+                Navigator.pop(context);
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return const Settings(primaryColor: _primaryColor);
+                }));
               },
             )
           ],
@@ -113,45 +116,52 @@ class _HomeState extends State<Home> {
           child: Padding(
             padding:
                 const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-            child: FutureBuilder<Position>(
-              future: _position,
-              builder:
-                  (BuildContext context, AsyncSnapshot<Position> snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const CircularProgressIndicator(); // Show loading indicator
-                }
+            child: ValueListenableBuilder<String?>(
+                valueListenable: openWeatherApiKeyNotifier,
+                builder: (context, value, child) {
+                  return FutureBuilder<Position>(
+                    future: _position,
+                    builder: (BuildContext context,
+                        AsyncSnapshot<Position> snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return const Center(
+                            child:
+                                CircularProgressIndicator()); // Show loading indicator
+                      }
 
-                if (snapshot.hasError) {
-                  return Center(
-                      child: Text(
-                          'Error: ${snapshot.error}')); // Show error message
-                }
+                      if (snapshot.hasError) {
+                        return Center(
+                            child: Text(
+                                'Error: ${snapshot.error}')); // Show error message
+                      }
 
-                if (snapshot.hasData) {
-                  final position = snapshot.data!; // Extract the Position data
+                      if (snapshot.hasData) {
+                        final position =
+                            snapshot.data!; // Extract the Position data
 
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: <Widget>[
-                      CurrentLocation(
-                        latitude: position.latitude,
-                        longitude: position.longitude,
-                      ),
-                      const CurrentDateAndDay(),
-                      CurrentWeatherInfo(
-                        latitude: position.latitude,
-                        longitude: position.longitude,
-                      ),
-                      FiveDaysForecast(
-                          latitude: position.latitude,
-                          longitude: position.longitude)
-                    ],
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: <Widget>[
+                            CurrentLocation(
+                              latitude: position.latitude,
+                              longitude: position.longitude,
+                            ),
+                            const CurrentDateAndDay(),
+                            CurrentWeatherInfo(
+                              latitude: position.latitude,
+                              longitude: position.longitude,
+                            ),
+                            FiveDaysForecast(
+                                latitude: position.latitude,
+                                longitude: position.longitude)
+                          ],
+                        );
+                      }
+
+                      return const Text('Failed to retrieve location data.');
+                    },
                   );
-                }
-
-                return const Text('Failed to retrieve location data.');
-              },
-            ),
+                }),
           ),
         ),
       ),

@@ -6,8 +6,9 @@ A Flutter-based app that provides weather information for multiple locations and
 
 - [x] Implement at least a `StatelessWidget` such as `Row` or `Column`.
 - [x] Implement at least a `StatefulWidget` to display app status or takes input from user.
-- [ ] Contains at least **two** pages and implement `Navigation`.
-- [ ] No UI overflow. In addition, responsive in both mobile and web is a **plus**.
+- [x] Contains at least **two** pages and implement `Navigation`. The app have three pages, namely Home, Settings, and Forecast.
+- [x] No UI overflow. 
+- [ ] In addition, responsive in both mobile and web is a **plus**.
 
 ## About
 
@@ -21,6 +22,4 @@ A Flutter-based app that provides weather information for multiple locations and
 ## Todo
 
 - [x] Fetch current weather info and icon
-- [ ] Filter to 5 days in home and show details on next page
-- [ ] Remove cryptic error message in homepage.
-- Settings page include custom user api key and current location
+- [x] Settings page include custom user api key
